@@ -1,0 +1,50 @@
+section {
+    clear: both;
+}
+
+.pad,
+.wave {
+    width: 100px;
+    height: 100px;
+    float: left;
+    display: inline-block;
+    margin: 10px;
+    background: orange;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: Verdana;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding-top: 10px;
+	cursor: pointer;
+}
+
+.wave {
+    background: purple;
+    color: #fff;
+}
+
+.pad.new {
+	background: red;
+	font-size: 13px;
+	font-weight: 700;
+	padding-top: 20px;
+	color: #fff;
+}
+
+.button {
+background: green;
+color: white;
+font-weight: 500;
+padding: 6px 10px;
+display: inline-block;
+border-radius: 4px;
+-webkist-border-radius: 4px;
+cursor: pointer;
+}
+
+
+
