@@ -1,5 +1,6 @@
 body,html {
     font-family: 'Source Code Pro', Verdana;
+    font-weight: 500;
     background-color: #eee;
     background-image: url("squared_metal.png");
 }
