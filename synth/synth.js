@@ -31,12 +31,11 @@ function gotBuffers( buffers ) {
 }
 
 function doneEncoding(blob) {
-    console.log("done blob"); console.log(blob);
     var selector = $(".new").attr("id");
     var url = Recorder.setupDownload(blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav", selector);
     var $link = $("#" + selector);
     $link.data("sound", url).attr("data-sound", url);
-    addAudioProperties($(selector));
+    addAudioProperties(document.getElementById(selector));
     $link.html(selector).removeClass("new").addClass("ready")
     recIndex++;
 }
@@ -78,9 +77,11 @@ function toggleRecording(elem) {
         if (!audioRecorder)
             return;
         elem.classList.add("recording");
-        elem.innerHTML = "STOP REC"
-        audioRecorder.clear();
-        audioRecorder.record();
+        elem.innerHTML = "STOP REC";
+        window.setTimeout(function() {
+            audioRecorder.clear();
+            audioRecorder.record();
+        }, 50);
     }
 }
 
@@ -111,6 +112,7 @@ function initAudio() {
 }
 
 function addAudioProperties(object) {
+    console.log(object);
     object.name = object.id; // the "id" attribute of the HTML element
     object.source = $(object).data('sound'); // the "data-sound" attribute of the HTML element
     loadAudio(object, object.source);
@@ -149,11 +151,13 @@ $(document).ready(function() {
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
     }
     if (hasGetUserMedia()) {
-        $("#pads").prepend("<span id='record_pad' class='button' onclick='recordPad()'> Record New </span>");
+        $("#record_pad").show();
         initAudio();
     } else {
         alert('use Chrome to add your own sound!');
     }
+
+    $("#record_pad").click(recordPad);
 });
 
 $(window).load(function() {

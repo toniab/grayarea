@@ -1,25 +1,29 @@
 <html>
 
 	<head>
-		<title>Simple Synth</title>
+		<title>Dr. Umpad</title>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="synth.css">
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="recorder.js"></script>
-    <script type="text/javascript" src="synth.js"></script>
+    <script type="text/javascript" src="synth.js"></script> 
 	</head>
 
 	<body>
-    <p>Adapted from <a href="http://www.sitepoint.com/html5-web-audio-api-tutorial-building-virtual-synth-pad/">here</a>.</p>
+    <div id="synth">
     <section id="pads">
-      <h3>pads</h3>
+      <h1>Dr. Umpad</h1>
+      <h3>pads <span id='record_pad' class='button' onclick='recordPad()'> New Pad </span></h3>
 			<div class="pad ready" id="pad1" data-sound="kick.wav">kick drum</div>
 			<div class="pad ready" id="pad2" data-sound="snare.wav">snare</div>
 			<div class="pad ready" id="pad3" data-sound="demo.mp3">???</div>
 			<div class="pad ready" id="pad4" data-sound="ambient_clip.mp3">ambient</div>
     </section>
+    <div class="clear"></div>
+    <!--
     <section id="waves">
-      <h3>waveforms</h3>
+      <h3>waves</h3>
       <div class="wave" data-type="sine" data-freq="440">sine</div>
       <div class="wave" data-type="square" data-freq="220">square</div>
       <div class="wave" data-type="saw" data-freq="560">saw</div>
@@ -28,6 +32,10 @@
     <section>
       <input type="range" min="200" max="900" step="100">
     </section>
+    -->
+    </div>
+
+    <p class="credits">Combining js from <a class="credits" href="http://www.sitepoint.com/html5-web-audio-api-tutorial-building-virtual-synth-pad/">Web Audio API</a> and <a class="credits" href="https://github.com/mattdiamond/Recorderjs">Recorderjs</a>.</p>
 	</body>
 
 </html>
