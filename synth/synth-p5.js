@@ -35,8 +35,7 @@ var PRESETS = {"pad1" : {"name": "Kick Drum",
                         "path": "ambient_clip.mp3"}
                 };
 
-var synth, pad_counter, mic, recorder, rec_pad, rec_state,
-SOUNDS = PRESETS;
+var synth, pad_counter, mic, recorder, rec_pad, rec_state, fft, amplitude, SOUNDS = PRESETS;
 
 function preload() {
   for (var sound in PRESETS) {
@@ -46,9 +45,6 @@ function preload() {
 }
 
 function setup() {
-  /*var mycanvas = createCanvas(720, 200);
-  mycanvas.parent("synth_wrapper");
-  mycanvas.id("synth");*/
 
   // create an audio in
   mic = new p5.AudioIn();
@@ -78,6 +74,11 @@ function setup() {
   }
 
   newRecordingPad();
+
+  canvas = createCanvas(windowWidth,windowHeight).id("visualizer").parent("visualizer_wrapper");
+  noFill();
+  fft = new p5.FFT();
+  amplitude = new p5.Amplitude();
 }
 
 function newRecordingPad() {
@@ -137,5 +138,13 @@ function playSound(play_pad) {
 } 
 
 function draw() {
-
+  //background(200,200,200,255);
+  clear();
+  var bass = fft.getEnergy("bass");
+  var mid = fft.getEnergy("mid");
+  var treb = fft.getEnergy("treble");
+  var alpha = Math.min((bass + mid + treb), 255);
+  
+  var spectrum = fft.analyze();
+  background(bass, mid, treb, alpha);
 }
